@@ -12,22 +12,25 @@ namespace WcfServiceCats
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class Service1 : IService1
     {
-        public string GetData(int value)
+        public bool AddCat(Cat cat)
         {
-            return string.Format("You entered: {0}", value);
+            return DataBaseHelper.AddCat(cat);
         }
 
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
+        public bool RemoveCat(Cat cat)
         {
-            if (composite == null)
-            {
-                throw new ArgumentNullException("composite");
-            }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
+            return DataBaseHelper.RemoveCat(cat);
         }
+
+        public bool UpdateCat(Cat cat)
+        {
+            return DataBaseHelper.UpdateCat(cat);
+        }
+
+        public IEnumerable<Cat> ListAllCats(Cat cat)
+        {
+            return DataBaseHelper.ListAllCats(cat);
+        }
+        
     }
 }

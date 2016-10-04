@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Web.Profile;
 
 namespace WcfServiceCats
 {
@@ -12,36 +13,67 @@ namespace WcfServiceCats
     [ServiceContract]
     public interface IService1
     {
+        [OperationContract]
+        bool AddCat(Cat cat);
 
         [OperationContract]
+        bool RemoveCat(Cat cat);
+
+        [OperationContract]
+        bool UpdateCat(Cat cat);
+
+        [OperationContract]
+        IEnumerable<Cat> ListAllCats(Cat cat);
+
+
+
+
+        /*[OperationContract]
         string GetData(int value);
 
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);
-
+        */
         // TODO: Add your service operations here
     }
 
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
     [DataContract]
-    public class CompositeType
+
+    public class Cat
     {
-        bool boolValue = true;
-        string stringValue = "Hello ";
+        private string _name;
+        private string _breed;
+        private int _age;
+        private string _ownersName;
 
         [DataMember]
-        public bool BoolValue
+        public string Name
         {
-            get { return boolValue; }
-            set { boolValue = value; }
+            get { return _name; }
+            set { _name = value; }
         }
 
         [DataMember]
-        public string StringValue
+        public string Breed
         {
-            get { return stringValue; }
-            set { stringValue = value; }
+            get { return _breed; }
+            set { _breed = value; }
+        }
+
+        [DataMember]
+        public int Age
+        {
+            get { return _age; }
+            set { _age = value; }
+        }
+
+        [DataMember]
+        public string OwnersName
+        {
+            get { return _ownersName; }
+            set { _ownersName = value; }
         }
     }
 }
