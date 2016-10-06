@@ -11,7 +11,7 @@ namespace WcfServiceCats
     public class DataBaseHelper
     {
         private static string connectionstring =
-            @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CatsDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            @"Server=tcp:catsdb.database.windows.net,1433;Initial Catalog=CatsDB;Persist Security Info=False;User ID=krimmero;Password=Leisted6;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
         public static Boolean AddCat(Cat cat)
         {
