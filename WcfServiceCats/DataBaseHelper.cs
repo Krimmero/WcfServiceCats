@@ -68,34 +68,37 @@ namespace WcfServiceCats
             return true;
         }
 
-        public static IEnumerable<Cat> ListAllCats(Cat cat)
+        public static List<string> ListAllCats()
         {
             using (SqlConnection connection = new SqlConnection(connectionstring))
             {
                 connection.Open();
 
                 
-                string sql = "SELECT * FROM cat WHERE Name = @name";
+                string sql = "SELECT Name FROM cat";
                 SqlCommand cmd = new SqlCommand(sql, connection);
 
-                cmd.Parameters.AddWithValue("@name", cat.Name);
+                
                 cmd.CommandType = CommandType.Text;
                 cmd.ExecuteNonQuery();
 
-                List<Cat> listOfCats = new List<Cat>();
+                List<string> listOfCats = new List<string>();
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    while (reader.Read())
+                    if (reader.HasRows)
                     {
-                        var item = reader;
-                        listOfCats.Add();
+                        while (reader.Read())
+                        {
+                            string item = reader.GetString(reader.GetOrdinal("Name"));
+                            listOfCats.Add(item);
+                        }
                     }
+                    
                 }
-                
+                return listOfCats;
 
             }
-            return null;
 
         }
 

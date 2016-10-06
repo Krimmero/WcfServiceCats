@@ -27,9 +27,9 @@ namespace WcfServiceCats
             return DataBaseHelper.UpdateCat(cat);
         }
 
-        public IEnumerable<Cat> ListAllCats(Cat cat)
+        public List<string> ListAllCats()
         {
-            return DataBaseHelper.ListAllCats(cat);
+            return DataBaseHelper.ListAllCats();
         }
         
     }

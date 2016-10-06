@@ -23,7 +23,7 @@ namespace WcfServiceCats
         bool UpdateCat(Cat cat);
 
         [OperationContract]
-        IEnumerable<Cat> ListAllCats(Cat cat);
+        List<string> ListAllCats();
 
 
 
